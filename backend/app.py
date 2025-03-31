@@ -5,6 +5,10 @@ from model.predict import predict_position
 app = Flask(__name__)
 CORS(app)  # Allow frontend JS to call the API
 
+from leaderboard import leaderboard_bp
+#added pathing to use blueprints to keep it modular idk
+
+
 @app.route("/")
 def home():
     return "F1 Predictor API is running!"
@@ -17,6 +21,7 @@ def predict():
         return jsonify({"prediction": prediction})
     except Exception as e:
         return jsonify({"error": str(e)}), 400
+
 
 if __name__ == "__main__":
     app.run(debug=True)
